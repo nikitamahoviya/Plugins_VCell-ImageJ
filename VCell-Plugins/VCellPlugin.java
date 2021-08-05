@@ -169,8 +169,12 @@ public class VCellPlugin extends ContextCommand {
 			  setModel(new DefaultComboBoxModel<String>(items));
 		  }
 		}
-	
-	public static class VCellSelection {
+		@SuppressWarnings("unused")
+		private void handleException(Throwable exception) {	
+		System.out.println("--------- UNCAUGHT EXCEPTION ---------");	
+		exception.printStackTrace(System.out);	
+	}
+public static class VCellSelection {
 		public String theCacheKey;
 		public VCellHelper.ModelType modelType;
 		public String userid;
@@ -385,8 +389,8 @@ public class VCellPlugin extends ContextCommand {
 			final boolean[] bUseVCellSelectionHolder = new boolean[] {false};
 
 			//jcbModelType
-			jp.add(new JLabel("Model Type"));
-			jp.add(jcbModelType);
+		//	jp.add(new JLabel("Model Type"));
+		//	jp.add(jcbModelType);
 			
 			
 			jp.add(new JLabel("VCell Userid"));
@@ -400,9 +404,9 @@ public class VCellPlugin extends ContextCommand {
 							try {
 								searchVCell();
 							} catch (Exception e1) {
-								uiService.showDialog("Error in searchVCell()\n"+e1.getClass().getName()+"\n"+e1.getMessage());
-//								JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(jp);
-//								topFrame.dispose();
+								uiService.showDialog("Activate VCell Client ImageJ service\\nTools->'Start Fiji (ImageJ) service'\n\n\""+e1.getClass().getName()+"\n"+e1.getMessage());//								
+								JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(jp);								
+								topFrame.dispose();
 								return;
 							}
 							SwingUtilities.invokeLater(new Runnable() {
@@ -415,6 +419,7 @@ public class VCellPlugin extends ContextCommand {
 									jcbUserid.setModel(new DefaultComboBoxModel<String>(useridSet.toArray(new String[0])));
 									if(jcbUserid.getItemCount()==0) {
 										jcbUserid.addItem("Nothing Found");
+										uiService.showDialog("Check connectivity. Login with your userId or as a guest.");
 									}else if(bUseVCellSelectionHolder[0]) {
 										jcbUserid.setSelectedItem(vcellModelsInput.getDefaultValue().userid);
 									}else {
@@ -554,7 +559,7 @@ public class VCellPlugin extends ContextCommand {
 												 */);
 							while(ijVarInfosHolder[0] == null) {
 								try {
-									Thread.sleep(100);
+									Thread.sleep(0);
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

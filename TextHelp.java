@@ -31,6 +31,8 @@
 
 package org.vcell.imagej.plugin;
 
+
+import java.awt.Dimension;
 import org.scijava.ItemIO;
 import org.scijava.ItemVisibility;
 import org.scijava.command.Command;
@@ -44,9 +46,15 @@ import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 import org.scijava.widget.Button;
 import org.scijava.widget.NumberWidget;
+//import org.vcell.util.BeanUtils;
+
+/*import cbit.vcell.client.PopupGenerator;
+import cbit.vcell.resource.PropertyLoader*/
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+
+import javax.swing.JFrame;
 
 /**
  * A test of text displays.
@@ -62,28 +70,31 @@ import java.awt.event.ActionEvent;
 			mnemonic = 'h',accelerator = "^H") },  attrs = { @Attr(name = "no-legacy") })
 public class TextHelp implements Command, Previewable {
 
+	JFrame frame = new JFrame();
 
 	@Parameter(visibility = ItemVisibility.MESSAGE)
-	private final String header = "<html><h2 style=\"font-family:'Times New Roman'\">Hello " + System.getProperty("user.name") + " !  Welcome to VCell Help</h2><html>";
-	//<p>
-  //  We’re a <a href="/about/about_team.htm">team</a> of professionals working
-   // hard to provide free learning content.
- //</p>
-	//System.getProperty("java.version") + " " + System.getProperty("os.name")+ " " + System.getProperty("os.arch");
-	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	  private final String header1= "<html><pstyle=\"font-family:'Optima'\">Version: "+" " + System.getProperty("java.version");
-	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	  private final String header2= "<html><pstyle=\"font-family:'Optima'\">Operating System: "+" " +System.getProperty("os.name")+ " " + System.getProperty("os.arch");
+	private final String header1 = "<html><h2 style=\"font-family:'Times New Roman';color:green;\">Hello " + System.getProperty("user.name") + " !  Welcome to VCell Help</h2><html>";
 
-	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String header2 = "<html><h3 style=\"font-family:'Optima';color:red;\">About your machine </h2><html>";
+
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	  private final String header3= "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling  <br> "
+	private final String header3 = "<html><pstyle=\\\"font-family:'Optima'\\\">Java Version: "+" " + System.getProperty("java.version") +"<br> Operating System: "+" " +System.getProperty("os.name")+ " " + System.getProperty("os.arch");
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String header4 = "<html><h3 style=\"font-family:'Optima';color:red;\">Pre-Requirements for running VCell Plugins </h2><html>";
+
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	private final String header5 = "<html><p style=\"font-family:'Optima'\">To run various VCell Plugins there are certain pre requirements which are listed below <p> "
+		  		+ "<ul> <li>VCell Client ImageJ service should be activated.</li>"
+		  		+"<li>Check your connectivity and login to VCell with your userId or as a guest.</li></ul></html>";
+
+
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	  private final String header6 = "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling  <br> "
 		  		+ "and simulating reaction kinetics,membrane transport <br>"
 		  		+ "and diffusion in the complex geometries</p><html>";
 	
-
 	@Override
 	public void preview() {
 		// TODO Auto-generated method stub

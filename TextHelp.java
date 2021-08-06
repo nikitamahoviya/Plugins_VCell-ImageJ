@@ -148,20 +148,6 @@ public class TextHelp implements Command, Previewable {
 		}
 	};
 
-	/*
-	 * try { buttonWebsite.addActionListener(new ActionListener() { public void
-	 * actionPerformed(ActionEvent e) {
-	 * 
-	 * try {
-	 * 
-	 * String myurl = "https://vcell.org/";
-	 * 
-	 * java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
-	 * 
-	 * } catch (Exception e2) { // TODO: handle exception e2.printStackTrace(); } }
-	 * }); }
-	 */
-
 	//for launching the VCell Website 	
 	protected void website()
 	{
@@ -207,7 +193,7 @@ public class TextHelp implements Command, Previewable {
         }
 	}
 	
-	//for launching the VCell Support
+	//for launching the guidelines of publishing a model
 	protected void publish()
 	{
         try {
@@ -222,7 +208,7 @@ public class TextHelp implements Command, Previewable {
         }
 	}
 	
-	//for launching the 
+	//for launching the VCell support 
 	protected void support()
 	{
 		try {

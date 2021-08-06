@@ -48,13 +48,19 @@ import org.scijava.widget.Button;
 import org.scijava.widget.NumberWidget;
 //import org.vcell.util.BeanUtils;
 
+import net.imagej.ImageJ;
+
 /*import cbit.vcell.client.PopupGenerator;
 import cbit.vcell.resource.PropertyLoader*/
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
+import javax.swing.JToolBar;
 
 /**
  * A test of text displays.
@@ -85,16 +91,153 @@ public class TextHelp implements Command, Previewable {
 	private final String header4 = "<html><h3 style=\"font-family:'Optima';color:red;\">Pre-Requirements for running VCell Plugins </h2><html>";
 
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	  private final String header6 = "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling and simulating reaction <br> "
+		  		+ " kinetics,membrane transport and diffusion in the complex geometries</p><html>";
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
 	private final String header5 = "<html><p style=\"font-family:'Optima'\">To run various VCell Plugins there are certain pre requirements which are listed below <p> "
 		  		+ "<ul> <li>VCell Client ImageJ service should be activated.</li>"
 		  		+"<li>Check your connectivity and login to VCell with your userId or as a guest.</li></ul></html>";
 
 
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	  private final String header6 = "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling  <br> "
+	  private final String header8 = "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling  <br> "
 		  		+ "and simulating reaction kinetics,membrane transport <br>"
 		  		+ "and diffusion in the complex geometries</p><html>";
 	
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String header9 = "<html><h3 style=\"font-family:'Optima';color:red;\">Online Resources</h2><html>";
+
+	@Parameter(label="VCell Webiste", callback = "website")
+	private Button buttonWebsite;
+	
+	@Parameter(label="Disucssion Forum", callback = "forum")
+	private Button buttonForum;
+	
+	@Parameter(label="Change Permission", callback = "permission")
+	private Button buttonPermission;
+	
+	@Parameter(label="Publish your Model", callback = "publish")
+	private Button buttonModel;
+	
+	@Parameter(label="Contact Support", callback = "support")
+	private Button buttonSupport;
+
+	
+    public static void main(final String... args) throws Exception {
+        // create the ImageJ application context with all available services
+    	
+    	
+        final ImageJ ij = new ImageJ();
+        ij.ui().showUI();
+    }
+
+	private JDialog progressDialog = null;
+	private final Dimension dim = new Dimension(200,25);
+	private final JProgressBar jProgressBar = new JProgressBar(0,100) {
+		@Override
+		public Dimension getPreferredSize() {
+			// TODO Auto-generated method stub
+			return dim;
+		}
+		@Override
+		public Dimension getSize(Dimension rv) {
+			// TODO Auto-generated method stub
+			return dim;
+		}
+	};
+
+	/*
+	 * try { buttonWebsite.addActionListener(new ActionListener() { public void
+	 * actionPerformed(ActionEvent e) {
+	 * 
+	 * try {
+	 * 
+	 * String myurl = "https://vcell.org/";
+	 * 
+	 * java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+	 * 
+	 * } catch (Exception e2) { // TODO: handle exception e2.printStackTrace(); } }
+	 * }); }
+	 */
+
+	//for launching the VCell Website 	
+	protected void website()
+	{
+        try {
+            
+            String myurl = "https://vcell.org/";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }
+	}
+	
+	//for launching the discussion forum
+	protected void forum()
+	{
+        try {
+            
+            String myurl = "https://groups.google.com/g/vcell-discuss";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }	
+	}
+	
+	//for launching the changing permission dialog
+	protected void permission()
+	{
+		try {
+            
+            String myurl = "https://vcell.org/webstart/VCell_Tutorials/VCell_Help/topics/ch_1/Introduction/Permissions.html";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }
+	}
+	
+	//for launching the VCell Support
+	protected void publish()
+	{
+        try {
+            
+            String myurl = "https://vcell.org/publish-a-vcell-model";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }
+	}
+	
+	//for launching the 
+	protected void support()
+	{
+		try {
+            
+            String myurl = "https://vcell.org/support";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }
+	}
+	
+  	
 	@Override
 	public void preview() {
 		// TODO Auto-generated method stub

@@ -44,6 +44,8 @@ import org.scijava.plugin.Attr;
 import org.scijava.plugin.Menu;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
+import org.scijava.ui.DialogPrompt;
+import org.scijava.ui.UIService;
 import org.scijava.widget.Button;
 import org.scijava.widget.NumberWidget;
 //import org.vcell.util.BeanUtils;
@@ -56,6 +58,7 @@ import cbit.vcell.resource.PropertyLoader*/
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -75,8 +78,10 @@ import javax.swing.JToolBar;
 		@Menu(label = "VCell-ImageJ Help", weight = 1,
 			mnemonic = 'h',accelerator = "^H") },  attrs = { @Attr(name = "no-legacy") })
 public class TextHelp implements Command, Previewable {
-
-	JFrame frame = new JFrame();
+//"(c) Copyright 1998-2020 UConn Health"
+	
+	@Parameter
+	private UIService uiService;
 
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String header1 = "<html><h2 style=\"font-family:'Times New Roman';color:green;\">Hello " + System.getProperty("user.name") + " !  Welcome to VCell Help</h2><html>";
@@ -85,30 +90,23 @@ public class TextHelp implements Command, Previewable {
 	private final String header2 = "<html><h3 style=\"font-family:'Optima';color:red;\">About your machine </h2><html>";
 
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	private final String header3 = "<html><pstyle=\\\"font-family:'Optima'\\\">Java Version: "+" " + System.getProperty("java.version") +"<br> Operating System: "+" " +System.getProperty("os.name")+ " " + System.getProperty("os.arch");
+	private final String header3 = "<html><pstyle=\\\"font-family:'Optima'\\\">Java Version: "+" " + System.getProperty("java.version") +"<br> Operating System: "+" " +System.getProperty("os.name")+ " " + System.getProperty("os.arch")+"<br>(c) Copyright 1998-2020 UConn Health</p><html>";
 	
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String header4 = "<html><h3 style=\"font-family:'Optima';color:red;\">Pre-Requirements for running VCell Plugins </h2><html>";
 
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	  private final String header6 = "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling and simulating reaction <br> "
+	  private final String header5 = "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling and simulating reaction <br> "
 		  		+ " kinetics,membrane transport and diffusion in the complex geometries</p><html>";
 	
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	private final String header5 = "<html><p style=\"font-family:'Optima'\">To run various VCell Plugins there are certain pre requirements which are listed below <p> "
+	private final String header6 = "<html><p style=\"font-family:'Optima'\">To run various VCell Plugins there are certain pre requirements which are listed below <p> "
 		  		+ "<ul> <li>VCell Client ImageJ service should be activated.</li>"
 		  		+"<li>Check your connectivity and login to VCell with your userId or as a guest.</li></ul></html>";
-
-
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	  private final String header8 = "<html><p style=\"font-family:'Optima'\">Virtual Cell is an advanced software platform for modeling  <br> "
-		  		+ "and simulating reaction kinetics,membrane transport <br>"
-		  		+ "and diffusion in the complex geometries</p><html>";
-	
 	
 	@Parameter(visibility = ItemVisibility.MESSAGE)
-	private final String header9 = "<html><h3 style=\"font-family:'Optima';color:red;\">Online Resources</h2><html>";
-
+	private final String header7 = "<html><h3 style=\"font-family:'Optima';color:red;\">Online Resources</h2><html>";
+	
 	@Parameter(label="VCell Webiste", callback = "website")
 	private Button buttonWebsite;
 	
@@ -124,8 +122,35 @@ public class TextHelp implements Command, Previewable {
 	@Parameter(label="Contact Support", callback = "support")
 	private Button buttonSupport;
 
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	  private final String header8 = "<html><p style=\"font-family:'Optima'\">Featuring COPASI prameter estimation technology </p><html>";
 	
-    public static void main(final String... args) throws Exception {
+	@Parameter(label="Visit COPASI", callback = "copasi")
+	private Button buttonCopasi;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	  private final String header9 = "<html><p style=\"font-family:'Optima'\">Featuring spatial stochastic simulations powered by SMOLDYN </p><html>";
+	
+	@Parameter(label="Visit SMOLYDYN", callback = "smoldyn")
+	private Button buttonSmoldyn;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	  private final String header10 = "<html><p style=\"font-family:'Optima'\">Featuring rule-based simulations powered by BIONETGEN </p><html>";
+	
+	@Parameter(label="Visit BIONETGEN", callback = "bionetgen", description = "help.gif")
+	private Button buttonBionetgen;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	  private final String header11 = "<html><p style=\"font-family:'Optima'\">Featuring network-free stochastic simulations powered by NFsim </p><html>";
+	
+	@Parameter(label="Visit NFsim", callback = "nfsim")
+	private Button buttonNfsim;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	  private final String header12 = "<html><p style=\"font-family:'Optima';color: blue;\">Virtual Cell is supported by NIH Grant R24 GM137787 from the <br> "
+		  		+ " National Institute for General Medical Sciences</p><html>";
+	
+	public static void main(final String... args) throws Exception {
         // create the ImageJ application context with all available services
     	
     	
@@ -193,7 +218,7 @@ public class TextHelp implements Command, Previewable {
         }
 	}
 	
-	//for launching the guidelines of publishing a model
+	//for launching the VCell Support
 	protected void publish()
 	{
         try {
@@ -208,7 +233,7 @@ public class TextHelp implements Command, Previewable {
         }
 	}
 	
-	//for launching the VCell support 
+	//for launching the support
 	protected void support()
 	{
 		try {
@@ -223,7 +248,66 @@ public class TextHelp implements Command, Previewable {
         }
 	}
 	
-  	
+	//for launching the COPASI 
+	protected void copasi()
+	{
+        try {
+            
+            String myurl = "http://copasi.org/";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }	
+	}
+	
+	//for launching the SMOLDYN 
+	protected void smoldyn()
+	{
+        try {
+            
+            String myurl = "http://copasi.org/";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }	
+	}
+	
+	//for launching the BIONETEGEN
+	protected void bionetgen()
+	{
+        try {
+            
+            String myurl = "http://copasi.org/";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }	
+	}
+	
+	//for launching the BIONETEGEN
+	protected void nfsim()
+	{
+        try {
+            
+            String myurl = "http://copasi.org/";
+           
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
+           
+        } catch (Exception e2) {
+            // TODO: handle exception
+            e2.printStackTrace();
+        }	
+	}
+    
 	@Override
 	public void preview() {
 		// TODO Auto-generated method stub

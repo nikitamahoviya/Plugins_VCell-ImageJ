@@ -90,7 +90,7 @@ public class TextHelp implements Command, Previewable {
 	private final String header2 = "<html><h3 style=\"font-family:'Optima';color:red;\">About your machine </h2><html>";
 
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	private final String header3 = "<html><pstyle=\\\"font-family:'Optima'\\\">Java Version: "+" " + System.getProperty("java.version") +"<br> Operating System: "+" " +System.getProperty("os.name")+ " " + System.getProperty("os.arch")+"<br>(c) Copyright 1998-2020 UConn Health</p><html>";
+	private final String header3 = "<html><pstyle=\"font-family:'Optima'\">Java Version: "+" " + System.getProperty("java.version") +"<br> Operating System: "+" " +System.getProperty("os.name")+ " " + System.getProperty("os.arch")+"<br>(c) Copyright 1998-2020 UConn Health</p><html>";
 	
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String header4 = "<html><h3 style=\"font-family:'Optima';color:red;\">Pre-Requirements for running VCell Plugins </h2><html>";
@@ -107,18 +107,33 @@ public class TextHelp implements Command, Previewable {
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String header7 = "<html><h3 style=\"font-family:'Optima';color:red;\">Online Resources</h2><html>";
 	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	private final String header08 = "<html><p style=\"font-family:'Optima'\">To know more about VCell, visit our website. </p><html>";
+
 	@Parameter(label="VCell Webiste", callback = "website")
 	private Button buttonWebsite;
 	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	private final String header09 = "<html><p style=\"font-family:'Optima'\">Having doubts or want to discuss with the community, visit the discussion forum</p><html>";
+
 	@Parameter(label="Disucssion Forum", callback = "forum")
 	private Button buttonForum;
 	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	private final String header010 = "<html><p style=\"font-family:'Optima'\">Want to learn about changing permission for your model, checkout the permission changing page </p><html>";
+
 	@Parameter(label="Change Permission", callback = "permission")
 	private Button buttonPermission;
 	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	private final String header011 = "<html><p style=\"font-family:'Optima'\">Want to make your model public, checkout the publishing model guidelines</p><html>";
+
 	@Parameter(label="Publish your Model", callback = "publish")
 	private Button buttonModel;
 	
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	private final String header012 = "<html><p style=\"font-family:'Optima'\">Visit VCell Support for your encountered problems</p><html>";
+
 	@Parameter(label="Contact Support", callback = "support")
 	private Button buttonSupport;
 
@@ -147,8 +162,8 @@ public class TextHelp implements Command, Previewable {
 	private Button buttonNfsim;
 	
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	  private final String header12 = "<html><p style=\"font-family:'Optima';color: blue;\">Virtual Cell is supported by NIH Grant R24 GM137787 from the <br> "
-		  		+ " National Institute for General Medical Sciences</p><html>";
+	  private final String header12 = "<html><p style=\"font-family:'Optima';color: blue;\">Virtual Cell is supported by NIH Grant R24 GM137787 from the National Institute <br> "
+		  		+ " for General Medical Sciences</p><html>";
 	
 	public static void main(final String... args) throws Exception {
         // create the ImageJ application context with all available services
@@ -218,7 +233,7 @@ public class TextHelp implements Command, Previewable {
         }
 	}
 	
-	//for launching the VCell Support
+	//for publising your model
 	protected void publish()
 	{
         try {
@@ -268,7 +283,7 @@ public class TextHelp implements Command, Previewable {
 	{
         try {
             
-            String myurl = "http://copasi.org/";
+            String myurl = "http://www.smoldyn.org/";
            
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
            
@@ -283,7 +298,7 @@ public class TextHelp implements Command, Previewable {
 	{
         try {
             
-            String myurl = "http://copasi.org/";
+            String myurl = "http://bionetgen.org/";
            
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
            
@@ -298,7 +313,7 @@ public class TextHelp implements Command, Previewable {
 	{
         try {
             
-            String myurl = "http://copasi.org/";
+            String myurl = "http://michaelsneddon.net/nfsim/";
            
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(myurl));
            

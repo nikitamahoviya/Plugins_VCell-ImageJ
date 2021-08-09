@@ -2,6 +2,14 @@
 
 This repository is for the GSoC'21 project @ NRNB to [Develop GUI for ImageJ groovy script calling VCell API](https://github.com/nrnb/GoogleSummerOfCode/issues/148).
 
+## Project Overview
+
+We have to create a service for VCell users that allows Fiji/ImageJ scripting to directly access the VCell client and then expand this service into a series of user-friendly plugins for ImageJ that will automate processing and analyzing cell imaging simulation experiments. The task will include:
+- Entering the appropriate images to create a geometry
+- Setting initial conditions for the simulation
+- Running multiple simulations with varying parameter sets and
+- Visualizing and comparing simulation results to the original experimental image set
+
 ## Mentors 
 
 - [Ann Cowan](https://github.com/ACowan0105)

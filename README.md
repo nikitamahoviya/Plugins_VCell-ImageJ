@@ -14,3 +14,6 @@ The important thing before starting the development process is to make the envir
 > - IDE -> Eclipse2019-06
 > - jdk8.251
 > - maven 3.6.1
+
+Make your Eclipse workspace inside the local VCell folder and set all the arguments accordingly and install the dependencies.
+![image](https://user-images.githubusercontent.com/43717626/128692639-341d1977-8a4a-493e-a53f-ad2e489aee61.png)

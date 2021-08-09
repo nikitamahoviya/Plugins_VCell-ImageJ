@@ -44,7 +44,9 @@ import org.scijava.plugin.Attr;
 import org.scijava.plugin.Menu;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
+import org.scijava.util.ColorRGB;
 import org.scijava.widget.Button;
+import org.scijava.widget.ChoiceWidget;
 import org.scijava.widget.NumberWidget;
 
 import net.imagej.ImageJ;
@@ -62,6 +64,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -92,12 +95,13 @@ public class Template implements Command, Previewable {
 	
 	//putting a header or a display message
 	@Parameter(visibility = ItemVisibility.MESSAGE)
-	private final String header1 = "<html><h2 style=\"font-family:'Times New Roman';color:green;\">Hello " + System.getProperty("user.name") + " !  Welcome to VCell Help</h2><html>";
+	private final String header1 = "<html><h2 style=\"font-family:'Times New Roman';color:green;\">Hello " + System.getProperty("user.name")+ "! "
+			+ "<br>  This is a template for adding various elements to your plugin </h2><html>";
 
 	//Writing a simple message in the GUI
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
-	private final String header2 = "<html><p style=\"font-family:'Optima'; color:blue\">For writing a message or any content inside a GUI"
-			+ "<br>one should be accoustmed of writing basic HTML code.</p><html>";
+	private final String header2 = "<html><p style=\"font-family:'Optima'; color:blue\">For writing a message or any content inside a GUI one should be accoustmed of "
+			+ "<br>writing basic HTML code.</p><html>";
 	
 	//Browsing a file
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
@@ -113,6 +117,70 @@ public class Template implements Command, Previewable {
 	
 	@Parameter(label="VCell Webiste", callback = "website")
 	private Button buttonWebsite;
+	
+	@Parameter (visibility = ItemVisibility.MESSAGE) 
+	private final String header5 = "<html><p style=\"font-family:'Times New Roman'; font-size:10px;color:green\">For initializing String and Integer variables</p><html>";
+
+	@Parameter
+	private String variable = "A";
+	
+	@Parameter
+	private int  timePoint = 500;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String labelToggles = "Implementing Toggle button";
+
+	@Parameter(label = "boolean")
+	private boolean pBoolean;
+
+	@Parameter(label = "Boolean")
+	private Boolean oBoolean;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String choice = "Implementing multiple choices";
+	
+  	@Parameter (choices={"Java", "Groovy Script", "Python"}, style="listBox")
+  	private String languages;
+  	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String calender = "Showing a calender or for setting a date.";
+	
+	@Parameter
+	private Date date;
+
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String color_pallete = "Showing a color palette.";
+	
+	@Parameter
+	private ColorRGB color;
+  	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String slider = "Displaying slider and scroll bar for integer";
+
+	@Parameter(label = "Integer (Spinner)", style = NumberWidget.SPINNER_STYLE, min = "0", max = "1000")
+	private int spinnerInteger;
+
+	@Parameter(label = "Integer (Slider)", style = NumberWidget.SLIDER_STYLE,
+		min = "0", max = "1000", stepSize = "50")
+	private int sliderInteger;
+
+	@Parameter(label = "Integer (Scroll bar)",style = NumberWidget.SCROLL_BAR_STYLE, min = "0", max = "1000")
+	private int scrollBarInteger;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String radiobutton = "Displaying Radio Buttons in various orientations";
+	
+	@Parameter(label = "Did you liked the template", style = ChoiceWidget.RADIO_BUTTON_HORIZONTAL_STYLE, choices = { "Yes", "No", "Maybe" })
+	private String choiceRadioH;
+
+	@Parameter(label = "Did you liked the template",style = ChoiceWidget.RADIO_BUTTON_VERTICAL_STYLE, choices = {  "Yes", "No", "Maybe" })
+	private String choiceRadioV;
+	
+	@Parameter(visibility = ItemVisibility.MESSAGE)
+	private final String message_box = "Displaying a blank status bar for typing a messgae";
+	
+	@Parameter(description = "Demonstrates preview functionality by displaying the given message in the ImageJ status bar.")
+	private String message = null;
 	
 	public static void main(final String... args) throws Exception {
         // create the ImageJ application context with all available services

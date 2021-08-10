@@ -93,11 +93,23 @@ public class Template implements Command, Previewable {
 		exception.printStackTrace(System.out);
 	}
 	
-	//putting a header or a display message
+	//putting a header or a display message 
 	@Parameter(visibility = ItemVisibility.MESSAGE)
 	private final String header1 = "<html><h2 style=\"font-family:'Times New Roman';color:green;\">Hello " + System.getProperty("user.name")+ "! "
 			+ "<br>  This is a template for adding various elements to your plugin </h2><html>";
 
+	//to show the difference between alignment
+	
+	//for right alignment
+	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	private final String ralign = "This is right alignment.";
+	
+	//for left alignment 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
+	private final String lalign = "This is left alignment. ";
+
+
+	
 	//Writing a simple message in the GUI
 	@Parameter(visibility = ItemVisibility.MESSAGE) 
 	private final String header2 = "<html><p style=\"font-family:'Optima'; color:blue\">For writing a message or any content inside a GUI one should be accoustmed of "

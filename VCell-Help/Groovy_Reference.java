@@ -65,118 +65,111 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
 
-/**
- * A test of text displays.
- * 
- * @author Curtis Rueden
- */
-
-@Plugin(type = Command.class, label = "VCell-ImageJ Groovy-Scripts",  iconPath="left.gif",menu = {
+@Plugin(type = Command.class, label = "VCell-ImageJ Groovy-Scripts",  iconPath="new.gif",menu = {
 		@Menu(label = MenuConstants.PLUGINS_LABEL, weight = MenuConstants.FILE_WEIGHT,
 			mnemonic = MenuConstants.FILE_MNEMONIC),
 		@Menu(label = "VCell Help",  weight = 10, mnemonic = 'H'),
 		@Menu(label = "VCell-ImageJ Groovy-Scripts", weight = 11,
-			mnemonic = 'g',accelerator = "^G") },  attrs = { @Attr(name = "no-legacy") })
+			mnemonic = 'r',accelerator = "^R") },  attrs = { @Attr(name = "no-legacy") })
 public class Groovy_Reference implements Command, Previewable {
-//"(c) Copyright 1998-2020 UConn Health"
 	
 	@Parameter
 	private UIService uiService;
 
-	@Parameter(visibility = ItemVisibility.MESSAGE)
-	private final String header1 = "<html><h3 style=\"font-family:'Times New Roman';color:green;font-size:20px;\">You can access various Groovy Scripts from here</h3><html>";
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE)
+	private final String header1 = "<html><h3 style=\"font-family:'Times New Roman';color:green;font-size:17px;\">You can access various Groovy Scripts from here</h3><html>";
 
-	@Parameter(visibility = ItemVisibility.MESSAGE)
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE)
 	private final String header2 = "<html><p style=\"font-family:'Optima';color:red;font-size:15px;\">To run a Groovy Script: </p><html>";
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	private final String header3 = "<html><ul> <li>Click on Macro, a editable interface appears</li>"
 		  		+ "<li>Copy the Groovy script and paste there</li>"
 		  		+ "<li>Under the 'Language' menu choose Groovy</li>"	
 		  		+"<li>When you are done click run, you will get the desired result.</li></ul></html>";
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE)
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE)
 	private final String header4 = "<html><h3 style=\"font-family:'Optima';color:red;font-size:15px;\">Access Groovy Scripts from Github</h2><html>";
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	private final String header05 = "<html><p style=\"font-family:'Optima'\">Groovy Script for displaying one variable at a time</p><html>";
 
 	@Parameter(label="Display1Var1Time", callback = "display")
 	private Button buttonDisplay;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	private final String header6 = "<html><p style=\"font-family:'Optima'\">Groovy Script for displaying Line and Time Plot </p><html>";
 
 	@Parameter(label="Chart", callback = "chart")
 	private Button buttonChart;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	private final String header7 = "<html><p style=\"font-family:'Optima'\">saidkerbai2.</p><html>";
 
 	@Parameter(label="Said Kerbai2", callback = "saidkerbai2")
 	private Button buttonSaidkerbai2;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	private final String header8 = "<html><p style=\"font-family:'Optima'\">combineFig</p><html>";
 
 	@Parameter(label="CombineFig", callback = "combinefig")
 	private Button buttonCombinefig;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	private final String header9 = "<html><p style=\"font-family:'Optima'\">complex</p><html>";
 
 	@Parameter(label="Complex", callback = "complex")
 	private Button buttoncomplex;
 
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header10 = "<html><p style=\"font-family:'Optima'\">example</p><html>";
 	
 	@Parameter(label="Example", callback = "example")
 	private Button buttonexample;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header11 = "<html><p style=\"font-family:'Optima'\">example2</p><html>";
 	
 	@Parameter(label="example2", callback = "example2")
 	private Button buttonexample2;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header12 = "<html><p style=\"font-family:'Optima'\">kjp_stoch</p><html>";
 	
 	@Parameter(label="kjp_stoch", callback = "kjp_stoch")
 	private Button buttonkjp_stoch;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header13 = "<html><p style=\"font-family:'Optima'\">open2D</p><html>";
 	
 	@Parameter(label="open2D", callback = "open2D")
 	private Button buttonopen2D;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header14 = "<html><p style=\"font-family:'Optima'\">photoactivation</p><html>";
 	
 	@Parameter(label="Photoactivation", callback = "photoactivation")
 	private Button buttonphotoactivation;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header15 = "<html><p style=\"font-family:'Optima'\">photoactivation_analyze</p><html>";
 	
 	@Parameter(label="photoactivation_analyze", callback = "photoactivation_analyze")
 	private Button buttonphotoactivation_analyze;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header16 = "<html><p style=\"font-family:'Optima'\">photoactivation_load</p><html>";
 	
 	@Parameter(label="photoactivation_load", callback = "photoactivation_load")
 	private Button buttonphotoactivation_load;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header17 = "<html><p style=\"font-family:'Optima'\">photoactivation_run</p><html>";
 	
 	@Parameter(label="photoactivation_run", callback = "photoactivation_run")
 	private Button buttonphotoactivation_run;
 	
-	@Parameter(visibility = ItemVisibility.MESSAGE) 
+	@Parameter(label = " " ,visibility = ItemVisibility.MESSAGE) 
 	  private final String header18 = "<html><p style=\"font-family:'Optima'\">solverData</p><html>";
 	
 	@Parameter(label="solverData", callback = "solverData")
@@ -185,7 +178,6 @@ public class Groovy_Reference implements Command, Previewable {
 	
 	public static void main(final String... args) throws Exception {
         // create the ImageJ application context with all available services
-    	
     	
         final ImageJ ij = new ImageJ();
         ij.ui().showUI();

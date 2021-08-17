@@ -60,3 +60,24 @@ VCell Help is basically for future users and developers. If someone wants to cre
 - VCell ImageJ Groovy Scripts - This plugins opens into a GUI that gives information about running the various groovy scripts in Macros and also directs the user to various scripts on Github
 - VCell ImageJ Template - This plugin is not related to any functionality but is a reference for future developers which might help them in making their own plugins It has various commands for text editing, adding buttons, browsing files etc
 - VCell ImageJ Template Example - This plugin is another template which is functional and tells how we can implement  various elements in a GUI which can run as a plugin.
+
+## Testing of Plugin in Various Cases
+
+Reference: VCellPlugin.java
+
+### Testing A:
+
+ - Did Not logged in into my VCell Account
+ - Activated my Fiji Imagej service
+ 
+ Which gave the resultant as
+
+![image](https://user-images.githubusercontent.com/43717626/124156564-68f8be80-dab5-11eb-97cd-150fba74c6db.png)
+
+### Testing B:
+ - Logged into my VCell Account
+ - Stopped the Fiji (Imagej) service
+
+Which gave the resultant as
+
+![image](https://user-images.githubusercontent.com/43717626/124158009-099bae00-dab7-11eb-9784-30dda620335b.png)

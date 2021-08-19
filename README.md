@@ -32,6 +32,35 @@ The project was basically to design a menu structure that could give us options 
 
 ![image](https://user-images.githubusercontent.com/43717626/129489338-322a7f77-3bbe-43b5-af18-63ea5080dbcc.png)
 
+### Designing the menu structure
+
+For designing the menu structure, I referred [ClearRecent.java](https://github.com/scijava/scijava-plugins-commands/blob/35790dea3819a7e46b3741abc179505d56e84a17/src/main/java/org/scijava/plugins/commands/io/ClearRecent.java) and the code is 
+
+![image](https://user-images.githubusercontent.com/43717626/130117103-37f81749-0c13-4cb6-8106-39a037d57216.png)
+
+Which signifies:
+
+- The **Header** under which the plugin will be placed
+- The **icon image** to clarify the purpose and make the plugin stand out
+- The **hierarchy** or the serial order in which the plugin should appear
+- The **short-cut keys** to access the plugin with keyboard
+
+Taking the example of [VCellPlugin.java](https://github.com/virtualcell/vcell/blob/master/vcell-imagej-helper/src/main/java/org/vcell/imagej/plugin/VCellPlugin.java)
+The structure is designed as follows:
+
+![image](https://user-images.githubusercontent.com/43717626/130122480-3c6d95b0-2cdc-47b4-b7f9-fc436a7d9ba7.png)
+
+- **label = "VCell Plugins"** is the submenu of Plugins which has various other plugins with various functionality
+- **iconPath="search_icon.gif"** is for assigning an icon image to the plugin
+- **weight = 4** assigns a priority to submenu VCell Plugins and seperates it from other available options with a line.
+- **mnemonic = 'V'** helps the user to access VCell Plugins with keyboard by pressing the key 'v'. it is represented by an underline on 'V' Of VCell Plugins
+- **label = "VCell Model Search"** is for accessing the the plugin named VCell Model Search inside the VCell Plugins Submenu
+- **weight = RecentFileService.MAX_FILES_SHOWN + 10** is for assigning the hierachy to the plugin inside the list of the submenu
+- **mnemonic = 'm'** helps the user to access the plugin VCell Model Search with keyboard by pressing the key 'm'. it is represented by an underline on 'M' Of VCell Model Search
+- **accelerator = "^M"** is another way to access the plugin VCell Model Search through keyboard by pressing a combination of Ctrl and M. This is indicated on the side of the Plugin name.
+- **label = "VCell Model Search "** is for naming the GUI of the result obtained after simulation
+
+
 So in this menu structure we have Plugins which has various options like VCell Plugins and VCell Help which in turn has a list of functionalities to offer.
 
 ![image](https://user-images.githubusercontent.com/43717626/129489349-6486daf7-4753-447b-8bc3-3928ac528edd.png)
